@@ -14,20 +14,28 @@
 
 
 from mpi4py import MPI
+import sys
 
 comm = MPI.COMM_WORLD
 me = comm.Get_rank()
 size = comm.Get_size()
 
-if (me == 0):
-    buf = ["coucou"]
-    comm.send(buf, dest=me+1, tag=42)
-    print("<" + str(me) +"> sent : "+str(buf))
-else:
-    buf = comm.recv(source=me-1, tag=42)
-    print("<" + str(me) +"> recieved : "+str(buf))
-    if(me != size-1):
-        comm.send(buf, dest=me+1, tag=42)
-        print("<" + str(me) +"> sent : "+str(buf))
+def broadcast(_from, msg):
 
+    last = (_from + size-1) % size
+    next = (me + 1) % size
+    prev = (me - 1 + size) % size
 
+    if (me == _from):
+        comm.send(msg, dest=next, tag=42)
+        print("<" + str(me) +"> sent : "+str(msg))
+    else:
+        buf = comm.recv(source=prev, tag=42)
+        print("<" + str(me) +"> recieved : "+str(buf))
+        if(me != last):
+            comm.send(buf, dest=next, tag=42)
+            print("<" + str(me) +"> sent : "+str(buf))
+
+if __name__ == "__main__":
+    if(len(sys.argv) == 3):
+        broadcast(int(sys.argv[1]), sys.argv[2])
