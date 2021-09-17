@@ -3,7 +3,7 @@ from time import sleep
 from pyeventbus3.pyeventbus3 import *
 
 # from EventBus import EventBus
-from Message import Message
+from TP2_Asynchrone_Bus.Message import Message
 
 
 # from geeteventbus.subscriber import subscriber
