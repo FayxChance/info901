@@ -37,12 +37,12 @@ class Process(Thread):
             self.compteur = self.compteur + 1 if self.compteur > event.cpt else event.cpt + 1
             print(f"Worker {self.get_Name()} received message {event.msg}")
 
+
     @subscribe(threadMode=Mode.PARALLEL, onEvent=BroadcastMessage)
     def onBroadcast(self, event):
         if event.src != self.get_Name():
             self.compteur = self.compteur + 1 if self.compteur > event.cpt else event.cpt + 1
             print(f"Worker {self.get_Name()} received broadcasted message {event.msg}")
-
 
     def run(self):
         loop = 0
@@ -52,17 +52,17 @@ class Process(Thread):
             sleep(1)
 
             # Creating token
-            if self.get_Name() == 1 and loop == 0:
-                t = Token("abcdefghijklmnopqrstuvwxyz")
-                print("created token : "+str(t))
-                self.sendTokenTo(t, (self.get_Name()+1)%3 )
+            if self.get_Name() == 0 and loop == 0:
+                t = Token("abcdefghijklmnopqrstuvwxyz", 1)
+                print("created token : " + str(t))
+                self.sendTo(t)
 
-            if self.get_Name() == 1:
-                b1 = Message(self.compteur, f"Message  {loop}", 2)
-                self.sendTo(b1, 2)
+            # if self.get_Name() == 1:
+                # b1 = Message(self.compteur, f"Message  {loop}", 2)
+                # self.sendTo(b1, 2)
                 # self.sendTo(b1, 3)
                 # self.broadcast(BroadcastMessage(self.compteur, f"Broadcasted message  {loop}", 1))
-            
+
             # Requesting token
             if loop == 2:
                 if self.get_Name() == 1:
@@ -79,9 +79,9 @@ class Process(Thread):
         self.alive = False
         self.join()
 
-    def sendTo(self, message, to):
+    def sendTo(self, obj):
         self.compteur += 1
-        PyBus.Instance().post(Message(message.cpt + 1, message.msg, to))
+        PyBus.Instance().post(obj)
 
     def sendTokenTo(self, token, to):
         self.compteur += 1
@@ -94,21 +94,23 @@ class Process(Thread):
     # TOKEN
     def request(self):
         self.state = "request"
-        while(self.state != "SC"):
-            sleep()
+
+        while (self.state != "SC"):
+            sleep(1)
 
     def release(self):
         self.state = "release"
 
     @subscribe(threadMode=Mode.PARALLEL, onEvent=Token)
     def onToken(self, event):
-        print("found token")
-        sleep(.5)
-        if self.state == "request":
-            print("i'm on request going on SC")
-            self.state = "SC"
-            while (self.state != "release"):
-                sleep()
-        self.sendTokenTo(event, (self.get_Name()+1)%3 )
-        print("token sent to next")
-        self.state = None
+        if self.get_Name() == event.dest:
+            sleep(1)
+            print(f"found token in {self.getName()}")
+            if self.state == "request":
+                print("i'm on request going on SC")
+                self.state = "SC"
+                while (self.state != "release"):
+                    sleep(1)
+            self.sendTo(Token(event.id, (event.dest+1) %3))
+            print(f"token sent to next which is {(self.get_Name() + 1) % 3}")
+            self.state = None
