@@ -5,9 +5,9 @@ if __name__ == '__main__':
 
     #bus = EventBus.getInstance()
 
-    p1 = Process("P1", 4)
-    p2 = Process("P2", 10)
-    p3 = Process("P3", 10   )
+    p1 = Process(1, 4, None)
+    p2 = Process(2, 10, None)
+    p3 = Process(3, 10, None)
 
     sleep(5)
 
