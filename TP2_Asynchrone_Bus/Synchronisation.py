@@ -1,3 +1,3 @@
 class Synchronisation:
-    def __init__(self):
-        None
+    def __init__(self, src):
+        self.src = src

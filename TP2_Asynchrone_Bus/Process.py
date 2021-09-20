@@ -17,7 +17,7 @@ size = 3
 
 
 class Process(Thread):
-    cptSynchrone = size - 1
+    cptSynchronize = size - 1
 
     def __init__(self, name, cpt, state):
         Thread.__init__(self)
@@ -40,22 +40,6 @@ class Process(Thread):
             self.compteur = self.compteur + 1 if self.compteur > event.cpt else event.cpt + 1
             print(f"Worker {self.get_Name()} received message {event.msg}")
 
-    @subscribe(threadMode=Mode.PARALLEL, onEvent=Synchronisation)
-    def onSynchronize(self, event):
-        print(f"Synchronize received in {self.get_Name()} now {self.cptSynchrone} after {self.cptSynchrone - 1}")
-        if self.cptSynchrone > 0:
-            self.cptSynchrone -= 1
-            sleep(1)
-            self.synchronize()
-
-    def waitSynchronize(self):
-        while self.cptSynchrone > 0:
-            print(f"worker {self.get_Name()} sleeping cpt {self.cptSynchrone}")
-            sleep(1)
-        self.cptSynchrone = size
-
-    def synchronize(self):
-        PyBus.Instance().post(Synchronisation())
 
     @subscribe(threadMode=Mode.PARALLEL, onEvent=BroadcastMessage)
     def onBroadcast(self, event):
@@ -91,13 +75,13 @@ class Process(Thread):
             #         print("releasing the beast !")
             #         self.release()
 
-            if self.get_Name() == 0 and loop == 5:
+            if self.get_Name() == 1 and loop == 0:
+                sleep(5)
+            elif self.get_Name() == 2 and loop == 0:
+                sleep(10)
+            if loop == 6:
                 self.synchronize()
-                self.waitSynchronize()
-            elif self.get_Name() != 0:
-                print(f"{self.getName()} waiting")
-                self.waitSynchronize()
-            print(f"{self.getName()} synchrone")
+
             loop += 1
         print(self.getName() + " stopped")
 
@@ -121,7 +105,7 @@ class Process(Thread):
     def request(self):
         self.state = "request"
 
-        while (self.state != "SC"):
+        while self.state != "SC":
             sleep(1)
 
     def release(self):
@@ -140,3 +124,13 @@ class Process(Thread):
             self.sendTo(Token(event.id, (event.dest + 1) % 3))
             print(f"token sent to next which is {(self.get_Name() + 1) % 3}")
             self.state = None
+
+    def synchronize(self):
+        PyBus.Instance().post(Synchronisation(self.get_Name()))
+        while self.cptSynchronize > 0:
+            sleep(1)
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=Synchronisation)
+    def onSynchronize(self, event):
+        if event.src != self.get_Name():
+            self.cptSynchronize -= 1
