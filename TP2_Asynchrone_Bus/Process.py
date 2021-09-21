@@ -137,12 +137,13 @@ class Process(Thread):
             # print(f"{self.get_Name()} cpt : {self.compteur}")
             sleep(1)
 
-            # # Creating token
+            # # First process creates a Token at first loop
             # if self.get_Name() == 0 and loop == 0:
             #     t = Token("abcdefghijklmnopqrstuvwxyz", 1)
             #     print("created token : " + str(t))
             #     self.sendTo(t)
 
+            # Send a message of type Message to the 2nd and 3rd process only
             # if self.get_Name() == 1:
             # b1 = Message(self.compteur, f"Message  {loop}", 2)
             # self.sendTo(b1, 2)
