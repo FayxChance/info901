@@ -1,4 +1,4 @@
-from Message import Message, DestinatedMessage, BroadcastMessage, Token, Synchronization
+from Message import *
 from State import State
 from pyeventbus3.pyeventbus3 import *
 from time import sleep
@@ -18,6 +18,10 @@ class Com(Thread):
         self.sem = threading.Semaphore()
         self.mailbox = []
         self.process = process
+
+        self.cptSynchronize = len(self.receivers)
+        self.messageReceived = False
+
 
         # Starting to listen the bus
         self.alive = True
@@ -47,19 +51,22 @@ class Com(Thread):
         self.mailbox.append(msg)
 
 
-    # Asynchronous communication methods
+    ### Asynchronous communication methods
     @subscribe(threadMode=Mode.PARALLEL, onEvent=BroadcastMessage)
     def onBroadcast(self, event):
         """
             Read the message on the bus
         """
-        if event.src != self.__get_name():
+        if event.src != self.owner:
+            sleep(1)
             if self.clock > event.stamp:
                 self.__inc_clock()
             else:
                 self.clock = event.stamp
-            self.__addMessageToMailbox(event)
+            if ((event in self.mailbox) == False):
+                self.__addMessageToMailbox(event)
             print(f"Worker {self.__get_name()} received broadcasted message {event.payload}")
+            sleep(1)
 
     def broadcast(self, payload: object):
         """
@@ -134,8 +141,8 @@ class Com(Thread):
             Find a message of type Synchronization
             If not the message sender, then decrement a counter
         """
-        if event.src != self.get_name():
-            self.process.cptSynchronize -= 1
+        if event.src != self.owner:
+            self.cptSynchronize -= 1
 
     def synchronize(self):
         """
@@ -144,9 +151,65 @@ class Com(Thread):
 
             Reaching 0 means that every process is in synchronization
         """
-        PyBus.Instance().post(Synchronization(self.get_name()))
-        while self.process.cptSynchronize > 0:
+        PyBus.Instance().post(Synchronization(src=self.owner, stamp=self.clock))
+        while self.cptSynchronize > 0:
             sleep(1)
-        self.process.cptSynchronize = len(self.receivers)-1
-    ###
-    
+        self.cptSynchronize = len(self.receivers)
+
+
+    ### Synchronous communication methods
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=BroadcastMessageSync)
+    def onBroadcastSync(self, event):
+        if(event.src != self.owner):
+            if self.clock > event.stamp:
+                self.__inc_clock()
+            else:
+                self.clock = event.stamp
+            self.__addMessageToMailbox(event)
+            self.messageReceived = True
+
+    def broadcastSync(self, _from: int, payload: object = None):
+        if (self.owner == _from):
+            # broadcast the object
+            if(payload != None):
+                self.__inc_clock()
+                PyBus.Instance().post(BroadcastMessageSync(src=_from, payload=payload, stamp=self.clock))
+            print("message sent")
+            # wait until everyone gets it
+            self.synchronize()
+        else:
+            # wait for the message
+            while(self.messageReceived != True):
+                sleep(1)
+            # notify everyone i received it
+            print("message received")
+            self.synchronize()
+            self.messageReceived = False
+
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=DestinatedMessageSync)
+    def receiveMessageSync(self, event):
+        if event.dest == self.owner:
+            self.messageReceived = True
+            self.__addMessageToMailbox(event)
+
+        if self.messageReceived == False:
+            PyBus.Instance().post(DestinatedMessageSync(src=self.__get_name(), payload="", dest=event.src, stamp=self.clock))
+
+    def receivFromSync(self):
+        while not self.messageReceived:
+            sleep(1)
+        print("message received")
+        print(self.getFirstMessage())
+
+
+    def sendToSync(self, _to: int, payload: object):
+        self.__inc_clock()
+        PyBus.Instance().post(DestinatedMessageSync(src=self.__get_name(), payload=payload, dest=_to, stamp=self.clock))
+        print("message sent")
+        while not self.messageReceived:
+            sleep(1)
+        
+        message = self.mailbox[len(self.mailbox)-1]
+        self.mailbox.remove(message)
+        

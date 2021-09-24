@@ -23,3 +23,11 @@ class BroadcastMessage(Message):
 class Synchronization(Message):
     def __init__(self, src, stamp):
         super().__init__(src=src, stamp=stamp)
+
+class BroadcastMessageSync(Message):
+    def __init__(self, src, payload, stamp):
+        super().__init__(src=src, payload=payload, stamp=stamp)
+
+class DestinatedMessageSync(Message):
+    def __init__(self, src, payload, dest, stamp):
+        super().__init__(src=src, payload=payload, dest=dest, stamp=stamp)

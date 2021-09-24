@@ -1,18 +1,16 @@
-from time import sleep
 from Process import Process
+from time import sleep
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    processes = []
+    receivers = [0,1,2,3]
+    for i in receivers:
+        r = receivers.copy()
+        r.remove(i)
+        p = Process(i, r)
+        processes.append(p)
 
-    #bus = EventBus.getInstance()
+    sleep(20)
 
-    p1 = Process(0, 4, None)
-    p2 = Process(1, 10, None)
-    p3 = Process(2, 10, None)
-
-    sleep(30)
-
-    p1.stop()
-    p2.stop()
-    p3.stop()
-
-    #bus.stop()
+    for p in processes:
+        p.stop()
