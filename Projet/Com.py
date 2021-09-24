@@ -190,26 +190,36 @@ class Com(Thread):
     @subscribe(threadMode=Mode.PARALLEL, onEvent=DestinatedMessageSync)
     def receiveMessageSync(self, event):
         if event.dest == self.owner:
+            if self.clock > event.stamp:
+                self.__inc_clock()
+            else:
+                self.clock = event.stamp
             self.messageReceived = True
             self.__addMessageToMailbox(event)
 
-        if self.messageReceived == False:
-            PyBus.Instance().post(DestinatedMessageSync(src=self.__get_name(), payload="", dest=event.src, stamp=self.clock))
-
     def receivFromSync(self):
-        while not self.messageReceived:
+        print("waiting for message")
+        while (self.messageReceived == False):
             sleep(1)
-        print("message received")
-        print(self.getFirstMessage())
+        lastMessage = self.mailbox[len(self.mailbox)-1]
+        PyBus.Instance().post(MessageReceivedSync(src=self.owner, dest=lastMessage.src, stamp=self.clock))
+        self.messageReceived = False
 
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=MessageReceivedSync)
+    def destReceivedMessage(self, event):
+        if event.dest == self.owner:
+            print("dest received message")
+            if self.clock > event.stamp:
+                self.__inc_clock()
+            else:
+                self.clock = event.stamp
+            self.messageReceived = True
 
     def sendToSync(self, _to: int, payload: object):
         self.__inc_clock()
-        PyBus.Instance().post(DestinatedMessageSync(src=self.__get_name(), payload=payload, dest=_to, stamp=self.clock))
+        PyBus.Instance().post(DestinatedMessageSync(src=self.owner, payload=payload, dest=_to, stamp=self.clock))
         print("message sent")
-        while not self.messageReceived:
+        while(self.messageReceived == False):
             sleep(1)
-        
-        message = self.mailbox[len(self.mailbox)-1]
-        self.mailbox.remove(message)
+        self.messageReceived = False
         

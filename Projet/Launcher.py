@@ -10,7 +10,7 @@ if __name__ == "__main__":
         p = Process(i, r)
         processes.append(p)
 
-    sleep(20)
+    sleep(15)
 
     for p in processes:
         p.stop()

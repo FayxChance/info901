@@ -92,16 +92,18 @@ class Process(Thread):
 
             # Synchronized send to test
             if loop == 2 and self.me == 0:
-                self.com.sendToSync(2, "coucou")
+                self.com.sendToSync(2, "Bonjour !")
 
-            if loop == 4 and self.me == 2:
+            if loop == 6 and self.me == 2:
                 self.com.receivFromSync()
+                print(self.com.getFirstMessage().payload)
 
-            # if loop == 6 and self.me == 1:
-            #     self.com.receivFromSync()
+            if loop == 8 and self.me == 1:
+                self.com.receivFromSync()
+                print(f"message received : {self.com.getFirstMessage().payload}")
 
-            # if loop == 8 and self.me == 3:
-            #     self.com.sendToSync(1, "coucou")
+            if loop == 12 and self.me == 3:
+                self.com.sendToSync(1, "Bonjour !")
             
             loop += 1
         print(self.getName() + " stopped")

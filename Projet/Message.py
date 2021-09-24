@@ -31,3 +31,7 @@ class BroadcastMessageSync(Message):
 class DestinatedMessageSync(Message):
     def __init__(self, src, payload, dest, stamp):
         super().__init__(src=src, payload=payload, dest=dest, stamp=stamp)
+
+class MessageReceivedSync(Message):
+    def __init__(self, src, dest, stamp):
+        super().__init__(src=src, dest=dest, stamp=stamp)
