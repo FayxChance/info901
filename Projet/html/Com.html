@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>Com API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>Com</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from time import sleep
+
+from pyeventbus3.pyeventbus3 import *
+
+from Message import *
+from State import State
+
+
+class Com(Thread):
+    &#34;&#34;&#34;
+    Com represents the middleware, it&#39;s used by a process to communicate with others.
+    Communication can be synchronized or async, depends on the methods used.
+    &#34;&#34;&#34;
+
+    def __init__(self, process, clock=0) -&gt; None:
+        &#34;&#34;&#34;
+        Attach the process to the middleware and set by default its clock to 0
+
+        :arg process : Process = Process attached to the middleware
+        :arg clock : int = Default 0. When communication is made between process, it increases its clock
+        &#34;&#34;&#34;
+        # Instance of bus listener
+        Thread.__init__(self)
+        self.setName(process.me)
+        PyBus.Instance().register(self, self)
+
+        # Self parameters
+        self.owner = process.me
+        self.receivers = process.receivers
+        self.clock = clock
+        self.sem = threading.Semaphore()
+        self.mailbox = []
+        self.process = process
+
+        self.cptSynchronize = len(self.receivers)
+        self.messageReceived = False
+
+        # Starting to listen the bus
+        self.alive = True
+        self.start()
+
+    def stop(self):
+        &#34;&#34;&#34;
+        stop kills the middleware
+        &#34;&#34;&#34;
+        self.alive = False
+        self.join()
+
+    def __inc_clock(self):
+        &#34;&#34;&#34;
+        __inc_clock increases the protected mutex clock
+        &#34;&#34;&#34;
+        self.sem.acquire()
+        self.clock += 1
+        self.sem.release()
+
+    def __get_name(self):
+        &#34;&#34;&#34;
+            __get_name returns the int converted name
+        &#34;&#34;&#34;
+        return int(self.getName())
+
+    # FIFO Mailbox
+    def get_first_message(self) -&gt; Message:
+        &#34;&#34;&#34;get_first_message pop the 1st message from its mailbox&#34;&#34;&#34;
+        return self.mailbox.pop(0)
+
+    def __add_message_to_mailbox(self, msg: Message):
+        &#34;&#34;&#34;__add_message_to_mailbox when receiving message, appends it to the mailbox&#34;&#34;&#34;
+        self.mailbox.append(msg)
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=BroadcastMessage)
+    def on_broadcast(self, event):
+        &#34;&#34;&#34;
+            Read the message on the bus
+        &#34;&#34;&#34;
+        if event.src != self.owner:
+            sleep(1)
+            if self.clock &gt; event.stamp:
+                self.__inc_clock()
+            else:
+                self.clock = event.stamp
+            if event not in self.mailbox:
+                self.__add_message_to_mailbox(event)
+            sleep(1)
+
+    def broadcast(self, payload: object):
+        &#34;&#34;&#34;
+            Send a message on the bus to everyone
+        &#34;&#34;&#34;
+        self.__inc_clock()
+        PyBus.Instance().post(BroadcastMessage(src=self.__get_name(), payload=payload, stamp=self.clock))
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=DestinatedMessage)
+    def on_receive(self, event) -&gt; None:
+        &#34;&#34;&#34;
+        Appends the message to the mailbox when DestinatedMessage is published on the bus and increases self.clock.
+
+        :param event:
+        :return:
+        &#34;&#34;&#34;
+        if event.dest == self.__get_name():
+            if self.clock &gt; event.stamp:
+                self.__inc_clock()
+            else:
+                self.clock = event.stamp
+            self.__add_message_to_mailbox(event)
+
+    def send_to(self, payload: object, dest: int) -&gt; None:
+        &#34;&#34;&#34;
+        Send a message on the bus to a specific receiver (dest)
+        :param payload: Data
+        :param dest: id of the dest process
+        :return:
+        &#34;&#34;&#34;
+        self.__inc_clock()
+        PyBus.Instance().post(DestinatedMessage(src=self.__get_name(), payload=payload, dest=dest, stamp=self.clock))
+
+    # Token
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=Token)
+    def on_token(self, event):
+        &#34;&#34;&#34;
+        Find a Token on the bus
+            If i&#39;m the reciever and i&#39;m in request state, then i get the Token and set state to Critical Section (SC)
+            I can use the Token i get the release state
+            Then i send the Token to the next process
+        :param event:
+        :return:
+        &#34;&#34;&#34;
+        if self.__get_name() == event.dest and self.process.alive:
+            # sleep(1)
+            if self.process.state == State.REQUEST:
+                self.process.state = State.SC
+                while self.process.state != State.RELEASE:
+                    sleep(1)
+            self.send_token_to(Token((event.dest + 1) % (len(self.receivers) + 1)))
+            self.process.state = State.NONE
+
+    def request_sc(self):
+        &#34;&#34;&#34;Set state to request and wait for a Token&#34;&#34;&#34;
+        self.process.state = State.REQUEST
+        while self.process.state != State.SC:
+            sleep(1)
+
+    def release_sc(self):
+        &#34;&#34;&#34;Set state to release&#34;&#34;&#34;
+        self.process.state = State.RELEASE
+
+    def send_token_to(self, token: Token):
+        &#34;&#34;&#34;
+            Send a token on the bus to the next receiver (dest)
+        &#34;&#34;&#34;
+        PyBus.Instance().post(token)
+
+    # Synchronization
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=Synchronization)
+    def on_synchronize(self, event):
+        &#34;&#34;&#34;
+            Find a message of type Synchronization
+            If not the message sender, then decrement a counter
+        &#34;&#34;&#34;
+        if event.src != self.owner:
+            self.cptSynchronize -= 1
+
+    def synchronize(self):
+        &#34;&#34;&#34;
+            Send a message of type Synchronization on the bus
+            and wait for my counter to reach 0
+
+            Reaching 0 means that every process is in synchronization
+        &#34;&#34;&#34;
+        PyBus.Instance().post(Synchronization(src=self.owner, stamp=self.clock))
+        while self.cptSynchronize &gt; 0:
+            sleep(1)
+        self.cptSynchronize = len(self.receivers)
+
+    ### Synchronous communication methods
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=BroadcastMessageSync)
+    def on_broadcast_sync(self, event):
+        &#34;&#34;&#34;
+        on_broadcast_sync
+        :param event:
+        :return:
+        &#34;&#34;&#34;
+        if event.src != self.owner:
+            if self.clock &gt; event.stamp:
+                self.__inc_clock()
+            else:
+                self.clock = event.stamp
+            self.__add_message_to_mailbox(event)
+            self.messageReceived = True
+
+    def broadcast_sync(self, _from: int, payload: object = None):
+        if self.owner == _from:
+            # broadcast the object
+            if payload is not None:
+                self.__inc_clock()
+                PyBus.Instance().post(BroadcastMessageSync(src=_from, payload=payload, stamp=self.clock))
+            # wait until everyone gets it
+            self.synchronize()
+        else:
+            # wait for the message
+            while not self.messageReceived:
+                sleep(1)
+            # notify everyone i received it
+            self.synchronize()
+            self.messageReceived = False
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=DestinatedMessageSync)
+    def receive_message_sync(self, event):
+        if event.dest == self.owner:
+            self.messageReceived = True
+            self.__add_message_to_mailbox(event)
+
+        if not self.messageReceived:
+            PyBus.Instance().post(
+                DestinatedMessageSync(src=self.__get_name(), payload=&#34;&#34;, dest=event.src, stamp=self.clock))
+
+    def receive_from_sync(self):
+        while not self.messageReceived:
+            sleep(1)
+        print(self.__add_message_to_mailbox())
+
+    def send_to_sync(self, _to: int, payload: object):
+        self.__inc_clock()
+        PyBus.Instance().post(DestinatedMessageSync(src=self.__get_name(), payload=payload, dest=_to, stamp=self.clock))
+        while not self.messageReceived:
+            sleep(1)
+        message = self.mailbox[len(self.mailbox) - 1]
+        self.mailbox.remove(message)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="Com.Com"><code class="flex name class">
+<span>class <span class="ident">Com</span></span>
+<span>(</span><span>process, clock=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Com represents the middleware, it's used by a process to communicate with others.
+Communication can be synchronized or async, depends on the methods used.</p>
+<p>Attach the process to the middleware and set by default its clock to 0</p>
+<p>:arg process : Process = Process attached to the middleware
+:arg clock : int = Default 0. When communication is made between process, it increases its clock</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Com(Thread):
+    &#34;&#34;&#34;
+    Com represents the middleware, it&#39;s used by a process to communicate with others.
+    Communication can be synchronized or async, depends on the methods used.
+    &#34;&#34;&#34;
+
+    def __init__(self, process, clock=0) -&gt; None:
+        &#34;&#34;&#34;
+        Attach the process to the middleware and set by default its clock to 0
+
+        :arg process : Process = Process attached to the middleware
+        :arg clock : int = Default 0. When communication is made between process, it increases its clock
+        &#34;&#34;&#34;
+        # Instance of bus listener
+        Thread.__init__(self)
+        self.setName(process.me)
+        PyBus.Instance().register(self, self)
+
+        # Self parameters
+        self.owner = process.me
+        self.receivers = process.receivers
+        self.clock = clock
+        self.sem = threading.Semaphore()
+        self.mailbox = []
+        self.process = process
+
+        self.cptSynchronize = len(self.receivers)
+        self.messageReceived = False
+
+        # Starting to listen the bus
+        self.alive = True
+        self.start()
+
+    def stop(self):
+        &#34;&#34;&#34;
+        stop kills the middleware
+        &#34;&#34;&#34;
+        self.alive = False
+        self.join()
+
+    def __inc_clock(self):
+        &#34;&#34;&#34;
+        __inc_clock increases the protected mutex clock
+        &#34;&#34;&#34;
+        self.sem.acquire()
+        self.clock += 1
+        self.sem.release()
+
+    def __get_name(self):
+        &#34;&#34;&#34;
+            __get_name returns the int converted name
+        &#34;&#34;&#34;
+        return int(self.getName())
+
+    # FIFO Mailbox
+    def get_first_message(self) -&gt; Message:
+        &#34;&#34;&#34;get_first_message pop the 1st message from its mailbox&#34;&#34;&#34;
+        return self.mailbox.pop(0)
+
+    def __add_message_to_mailbox(self, msg: Message):
+        &#34;&#34;&#34;__add_message_to_mailbox when receiving message, appends it to the mailbox&#34;&#34;&#34;
+        self.mailbox.append(msg)
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=BroadcastMessage)
+    def on_broadcast(self, event):
+        &#34;&#34;&#34;
+            Read the message on the bus
+        &#34;&#34;&#34;
+        if event.src != self.owner:
+            sleep(1)
+            if self.clock &gt; event.stamp:
+                self.__inc_clock()
+            else:
+                self.clock = event.stamp
+            if event not in self.mailbox:
+                self.__add_message_to_mailbox(event)
+            sleep(1)
+
+    def broadcast(self, payload: object):
+        &#34;&#34;&#34;
+            Send a message on the bus to everyone
+        &#34;&#34;&#34;
+        self.__inc_clock()
+        PyBus.Instance().post(BroadcastMessage(src=self.__get_name(), payload=payload, stamp=self.clock))
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=DestinatedMessage)
+    def on_receive(self, event) -&gt; None:
+        &#34;&#34;&#34;
+        Appends the message to the mailbox when DestinatedMessage is published on the bus and increases self.clock.
+
+        :param event:
+        :return:
+        &#34;&#34;&#34;
+        if event.dest == self.__get_name():
+            if self.clock &gt; event.stamp:
+                self.__inc_clock()
+            else:
+                self.clock = event.stamp
+            self.__add_message_to_mailbox(event)
+
+    def send_to(self, payload: object, dest: int) -&gt; None:
+        &#34;&#34;&#34;
+        Send a message on the bus to a specific receiver (dest)
+        :param payload: Data
+        :param dest: id of the dest process
+        :return:
+        &#34;&#34;&#34;
+        self.__inc_clock()
+        PyBus.Instance().post(DestinatedMessage(src=self.__get_name(), payload=payload, dest=dest, stamp=self.clock))
+
+    # Token
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=Token)
+    def on_token(self, event):
+        &#34;&#34;&#34;
+        Find a Token on the bus
+            If i&#39;m the reciever and i&#39;m in request state, then i get the Token and set state to Critical Section (SC)
+            I can use the Token i get the release state
+            Then i send the Token to the next process
+        :param event:
+        :return:
+        &#34;&#34;&#34;
+        if self.__get_name() == event.dest and self.process.alive:
+            # sleep(1)
+            if self.process.state == State.REQUEST:
+                self.process.state = State.SC
+                while self.process.state != State.RELEASE:
+                    sleep(1)
+            self.send_token_to(Token((event.dest + 1) % (len(self.receivers) + 1)))
+            self.process.state = State.NONE
+
+    def request_sc(self):
+        &#34;&#34;&#34;Set state to request and wait for a Token&#34;&#34;&#34;
+        self.process.state = State.REQUEST
+        while self.process.state != State.SC:
+            sleep(1)
+
+    def release_sc(self):
+        &#34;&#34;&#34;Set state to release&#34;&#34;&#34;
+        self.process.state = State.RELEASE
+
+    def send_token_to(self, token: Token):
+        &#34;&#34;&#34;
+            Send a token on the bus to the next receiver (dest)
+        &#34;&#34;&#34;
+        PyBus.Instance().post(token)
+
+    # Synchronization
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=Synchronization)
+    def on_synchronize(self, event):
+        &#34;&#34;&#34;
+            Find a message of type Synchronization
+            If not the message sender, then decrement a counter
+        &#34;&#34;&#34;
+        if event.src != self.owner:
+            self.cptSynchronize -= 1
+
+    def synchronize(self):
+        &#34;&#34;&#34;
+            Send a message of type Synchronization on the bus
+            and wait for my counter to reach 0
+
+            Reaching 0 means that every process is in synchronization
+        &#34;&#34;&#34;
+        PyBus.Instance().post(Synchronization(src=self.owner, stamp=self.clock))
+        while self.cptSynchronize &gt; 0:
+            sleep(1)
+        self.cptSynchronize = len(self.receivers)
+
+    ### Synchronous communication methods
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=BroadcastMessageSync)
+    def on_broadcast_sync(self, event):
+        &#34;&#34;&#34;
+        on_broadcast_sync
+        :param event:
+        :return:
+        &#34;&#34;&#34;
+        if event.src != self.owner:
+            if self.clock &gt; event.stamp:
+                self.__inc_clock()
+            else:
+                self.clock = event.stamp
+            self.__add_message_to_mailbox(event)
+            self.messageReceived = True
+
+    def broadcast_sync(self, _from: int, payload: object = None):
+        if self.owner == _from:
+            # broadcast the object
+            if payload is not None:
+                self.__inc_clock()
+                PyBus.Instance().post(BroadcastMessageSync(src=_from, payload=payload, stamp=self.clock))
+            # wait until everyone gets it
+            self.synchronize()
+        else:
+            # wait for the message
+            while not self.messageReceived:
+                sleep(1)
+            # notify everyone i received it
+            self.synchronize()
+            self.messageReceived = False
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=DestinatedMessageSync)
+    def receive_message_sync(self, event):
+        if event.dest == self.owner:
+            self.messageReceived = True
+            self.__add_message_to_mailbox(event)
+
+        if not self.messageReceived:
+            PyBus.Instance().post(
+                DestinatedMessageSync(src=self.__get_name(), payload=&#34;&#34;, dest=event.src, stamp=self.clock))
+
+    def receive_from_sync(self):
+        while not self.messageReceived:
+            sleep(1)
+        print(self.__add_message_to_mailbox())
+
+    def send_to_sync(self, _to: int, payload: object):
+        self.__inc_clock()
+        PyBus.Instance().post(DestinatedMessageSync(src=self.__get_name(), payload=payload, dest=_to, stamp=self.clock))
+        while not self.messageReceived:
+            sleep(1)
+        message = self.mailbox[len(self.mailbox) - 1]
+        self.mailbox.remove(message)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>threading.Thread</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="Com.Com.broadcast"><code class="name flex">
+<span>def <span class="ident">broadcast</span></span>(<span>self, payload: object)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send a message on the bus to everyone</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def broadcast(self, payload: object):
+    &#34;&#34;&#34;
+        Send a message on the bus to everyone
+    &#34;&#34;&#34;
+    self.__inc_clock()
+    PyBus.Instance().post(BroadcastMessage(src=self.__get_name(), payload=payload, stamp=self.clock))</code></pre>
+</details>
+</dd>
+<dt id="Com.Com.broadcast_sync"><code class="name flex">
+<span>def <span class="ident">broadcast_sync</span></span>(<span>self, _from: int, payload: object = None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def broadcast_sync(self, _from: int, payload: object = None):
+    if self.owner == _from:
+        # broadcast the object
+        if payload is not None:
+            self.__inc_clock()
+            PyBus.Instance().post(BroadcastMessageSync(src=_from, payload=payload, stamp=self.clock))
+        # wait until everyone gets it
+        self.synchronize()
+    else:
+        # wait for the message
+        while not self.messageReceived:
+            sleep(1)
+        # notify everyone i received it
+        self.synchronize()
+        self.messageReceived = False</code></pre>
+</details>
+</dd>
+<dt id="Com.Com.get_first_message"><code class="name flex">
+<span>def <span class="ident">get_first_message</span></span>(<span>self) ‑> Message.Message</span>
+</code></dt>
+<dd>
+<div class="desc"><p>get_first_message pop the 1st message from its mailbox</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_first_message(self) -&gt; Message:
+    &#34;&#34;&#34;get_first_message pop the 1st message from its mailbox&#34;&#34;&#34;
+    return self.mailbox.pop(0)</code></pre>
+</details>
+</dd>
+<dt id="Com.Com.on_broadcast"><code class="name flex">
+<span>def <span class="ident">on_broadcast</span></span>(<span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wrapper(*args, **kwargs):
+    return function(*args, **kwargs)    </code></pre>
+</details>
+</dd>
+<dt id="Com.Com.on_broadcast_sync"><code class="name flex">
+<span>def <span class="ident">on_broadcast_sync</span></span>(<span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wrapper(*args, **kwargs):
+    return function(*args, **kwargs)    </code></pre>
+</details>
+</dd>
+<dt id="Com.Com.on_receive"><code class="name flex">
+<span>def <span class="ident">on_receive</span></span>(<span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wrapper(*args, **kwargs):
+    return function(*args, **kwargs)    </code></pre>
+</details>
+</dd>
+<dt id="Com.Com.on_synchronize"><code class="name flex">
+<span>def <span class="ident">on_synchronize</span></span>(<span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wrapper(*args, **kwargs):
+    return function(*args, **kwargs)    </code></pre>
+</details>
+</dd>
+<dt id="Com.Com.on_token"><code class="name flex">
+<span>def <span class="ident">on_token</span></span>(<span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wrapper(*args, **kwargs):
+    return function(*args, **kwargs)    </code></pre>
+</details>
+</dd>
+<dt id="Com.Com.receive_from_sync"><code class="name flex">
+<span>def <span class="ident">receive_from_sync</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def receive_from_sync(self):
+    while not self.messageReceived:
+        sleep(1)
+    print(self.__add_message_to_mailbox())</code></pre>
+</details>
+</dd>
+<dt id="Com.Com.receive_message_sync"><code class="name flex">
+<span>def <span class="ident">receive_message_sync</span></span>(<span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wrapper(*args, **kwargs):
+    return function(*args, **kwargs)    </code></pre>
+</details>
+</dd>
+<dt id="Com.Com.release_sc"><code class="name flex">
+<span>def <span class="ident">release_sc</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set state to release</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def release_sc(self):
+    &#34;&#34;&#34;Set state to release&#34;&#34;&#34;
+    self.process.state = State.RELEASE</code></pre>
+</details>
+</dd>
+<dt id="Com.Com.request_sc"><code class="name flex">
+<span>def <span class="ident">request_sc</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set state to request and wait for a Token</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def request_sc(self):
+    &#34;&#34;&#34;Set state to request and wait for a Token&#34;&#34;&#34;
+    self.process.state = State.REQUEST
+    while self.process.state != State.SC:
+        sleep(1)</code></pre>
+</details>
+</dd>
+<dt id="Com.Com.send_to"><code class="name flex">
+<span>def <span class="ident">send_to</span></span>(<span>self, payload: object, dest: int) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send a message on the bus to a specific receiver (dest)
+:param payload: Data
+:param dest: id of the dest process
+:return:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send_to(self, payload: object, dest: int) -&gt; None:
+    &#34;&#34;&#34;
+    Send a message on the bus to a specific receiver (dest)
+    :param payload: Data
+    :param dest: id of the dest process
+    :return:
+    &#34;&#34;&#34;
+    self.__inc_clock()
+    PyBus.Instance().post(DestinatedMessage(src=self.__get_name(), payload=payload, dest=dest, stamp=self.clock))</code></pre>
+</details>
+</dd>
+<dt id="Com.Com.send_to_sync"><code class="name flex">
+<span>def <span class="ident">send_to_sync</span></span>(<span>self, _to: int, payload: object)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send_to_sync(self, _to: int, payload: object):
+    self.__inc_clock()
+    PyBus.Instance().post(DestinatedMessageSync(src=self.__get_name(), payload=payload, dest=_to, stamp=self.clock))
+    while not self.messageReceived:
+        sleep(1)
+    message = self.mailbox[len(self.mailbox) - 1]
+    self.mailbox.remove(message)</code></pre>
+</details>
+</dd>
+<dt id="Com.Com.send_token_to"><code class="name flex">
+<span>def <span class="ident">send_token_to</span></span>(<span>self, token: Message.Token)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send a token on the bus to the next receiver (dest)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send_token_to(self, token: Token):
+    &#34;&#34;&#34;
+        Send a token on the bus to the next receiver (dest)
+    &#34;&#34;&#34;
+    PyBus.Instance().post(token)</code></pre>
+</details>
+</dd>
+<dt id="Com.Com.stop"><code class="name flex">
+<span>def <span class="ident">stop</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>stop kills the middleware</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def stop(self):
+    &#34;&#34;&#34;
+    stop kills the middleware
+    &#34;&#34;&#34;
+    self.alive = False
+    self.join()</code></pre>
+</details>
+</dd>
+<dt id="Com.Com.synchronize"><code class="name flex">
+<span>def <span class="ident">synchronize</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send a message of type Synchronization on the bus
+and wait for my counter to reach 0</p>
+<p>Reaching 0 means that every process is in synchronization</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def synchronize(self):
+    &#34;&#34;&#34;
+        Send a message of type Synchronization on the bus
+        and wait for my counter to reach 0
+
+        Reaching 0 means that every process is in synchronization
+    &#34;&#34;&#34;
+    PyBus.Instance().post(Synchronization(src=self.owner, stamp=self.clock))
+    while self.cptSynchronize &gt; 0:
+        sleep(1)
+    self.cptSynchronize = len(self.receivers)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="Com.Com" href="#Com.Com">Com</a></code></h4>
+<ul class="">
+<li><code><a title="Com.Com.broadcast" href="#Com.Com.broadcast">broadcast</a></code></li>
+<li><code><a title="Com.Com.broadcast_sync" href="#Com.Com.broadcast_sync">broadcast_sync</a></code></li>
+<li><code><a title="Com.Com.get_first_message" href="#Com.Com.get_first_message">get_first_message</a></code></li>
+<li><code><a title="Com.Com.on_broadcast" href="#Com.Com.on_broadcast">on_broadcast</a></code></li>
+<li><code><a title="Com.Com.on_broadcast_sync" href="#Com.Com.on_broadcast_sync">on_broadcast_sync</a></code></li>
+<li><code><a title="Com.Com.on_receive" href="#Com.Com.on_receive">on_receive</a></code></li>
+<li><code><a title="Com.Com.on_synchronize" href="#Com.Com.on_synchronize">on_synchronize</a></code></li>
+<li><code><a title="Com.Com.on_token" href="#Com.Com.on_token">on_token</a></code></li>
+<li><code><a title="Com.Com.receive_from_sync" href="#Com.Com.receive_from_sync">receive_from_sync</a></code></li>
+<li><code><a title="Com.Com.receive_message_sync" href="#Com.Com.receive_message_sync">receive_message_sync</a></code></li>
+<li><code><a title="Com.Com.release_sc" href="#Com.Com.release_sc">release_sc</a></code></li>
+<li><code><a title="Com.Com.request_sc" href="#Com.Com.request_sc">request_sc</a></code></li>
+<li><code><a title="Com.Com.send_to" href="#Com.Com.send_to">send_to</a></code></li>
+<li><code><a title="Com.Com.send_to_sync" href="#Com.Com.send_to_sync">send_to_sync</a></code></li>
+<li><code><a title="Com.Com.send_token_to" href="#Com.Com.send_token_to">send_token_to</a></code></li>
+<li><code><a title="Com.Com.stop" href="#Com.Com.stop">stop</a></code></li>
+<li><code><a title="Com.Com.synchronize" href="#Com.Com.synchronize">synchronize</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -35,3 +35,23 @@ class DestinatedMessageSync(Message):
 class MessageReceivedSync(Message):
     def __init__(self, src, dest, stamp):
         super().__init__(src=src, dest=dest, stamp=stamp)
+
+class UpdateAnnuaire(Message):
+    def __init__(self, annuaire):
+        self.annuaire = annuaire
+
+class AddAnnuaire(Message):
+    def __init__(self, pid):
+        self.pid = pid
+
+class Numerotation(Message):
+    def __init__(self, pid):
+        self.pid = pid
+
+class NumerotationBack(Message):
+    def __init__(self, pid):
+        self.pid = pid
+
+class Leader(Message):
+    def __init__(self, pid):
+        self.pid = pid

@@ -1,8 +1,11 @@
+import time
+
 from Message import *
 from State import State
 from pyeventbus3.pyeventbus3 import *
 from time import sleep
 import threading
+import random
 
 class Com(Thread):
     def __init__(self, clock, process) -> None:
@@ -18,6 +21,13 @@ class Com(Thread):
         self.sem = threading.Semaphore()
         self.mailbox = []
         self.process = process
+
+        self.AmILeader = False
+        self.leaderPresent = False
+        self.annuaire = {}
+        self.numero = -1
+        self.pid = random.randint(0, sys.maxsize)
+        self.pidLeader = -1
 
         self.cptSynchronize = len(self.receivers)
         self.messageReceived = False
@@ -222,4 +232,60 @@ class Com(Thread):
         while(self.messageReceived == False):
             sleep(1)
         self.messageReceived = False
+
+     ############################   NUMEROTATION   ############################
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=Numerotation)
+    def onNumerotation(self, event):
+        """
+            If receiving the numerotation message, send a numerotation back if I am the leader
+        """
+        if self.AmILeader:
+            PyBus.Instance().post(NumerotationBack(event.pid))
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=NumerotationBack)
+    def onNumerotationBack(self, event):
+        """
+            The leaders answer
+        """
+        if event.pid == self.pid:
+            self.leaderPresent = True
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=Leader)
+    def onLeader(self, event):
+        """
+            When a leader is elected, send my self.pid to the leader
+        """
+        if event.pid != self.pid:
+            self.pidLeader = event.pid
+            PyBus.Instance().post(AddAnnuaire(self.pid))
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=AddAnnuaire)
+    def onAddAnnuaire(self, event):
+        """
+            When the leader received a AddAnnuaire meesage, it adds the message sender to the annuaire and update all annuaire of everyone
+        """
+        if self.AmILeader:
+            self.annuaire[self.pid] = len(self.annuaire) + 1
+            PyBus.Instance().post(UpdateAnnuaire(self.annuaire))
+
+    @subscribe(threadMode=Mode.PARALLEL, onEvent=UpdateAnnuaire)
+    def onUpdateAnnuaire(self, event):
+        """
+            When a process receives from the leader UpdateAnnuaire, it takes the annuaire passed in the message
+        """
+        if not self.AmILeader:
+            self.annuaire = event.annuaire
+            self.numero = self.annuaire[self.pid]
+
+    def numerotation(self):
+        """
+            Every process with id 1.
+            Send a numerotation message on the bus, if processes respond. Increments its own number.
+        """ 
+        PyBus.Instance().post(Numerotation(self.pid))
+        time.sleep(2)
+        if not self.leaderPresent:
+            self.AmILeader = True
+            self.numero = 0
+            PyBus.Instance().post(Leader(self.pid))
         

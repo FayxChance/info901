@@ -1,3 +1,5 @@
+from threading import Thread
+
 from pyeventbus3.pyeventbus3 import *
 from Message import Token
 from Com import Com
@@ -13,6 +15,7 @@ class Process(Thread):
         # Self parameters
         self.me = me
         self.receivers = receivers
+
 
         self.state = None
         self.com = Com(0, self)
