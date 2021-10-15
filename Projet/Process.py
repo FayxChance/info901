@@ -1,22 +1,20 @@
-from threading import Thread
+import random
+from time import sleep
 
 from pyeventbus3.pyeventbus3 import *
-from Message import Token
+
 from Com import Com
-from time import sleep
-import random
+
 
 class Process(Thread):
-    def __init__(self, me, receivers):
+    def __init__(self, me):
         # Instance of bus listener
         Thread.__init__(self)
-        self.setName(me)
 
         # Self parameters
         self.me = me
-        self.receivers = receivers
-
         self.annuaire = {}
+
         self.numero = -1
         self.pid = random.randint(0, sys.maxsize)
         self.pidLeader = -1
@@ -38,7 +36,7 @@ class Process(Thread):
         loop = 0
         while self.alive:
             print(self.getName() + " Loop: " + str(loop))
-            
+
             sleep(1)
             ### Asynchronous communication tests
             # # Broadcast test
@@ -52,7 +50,7 @@ class Process(Thread):
             # # Send to test
             # if(loop == 2 and self.me == 0):
             #     self.com.sendTo("bonjour", 2)
-            
+
             # if(loop == 4 and self.me == 2):
             #     if len(self.com.mailbox) > 0:
             #         print(self.com.getFirstMessage().payload)
@@ -87,7 +85,7 @@ class Process(Thread):
             # # The first process send a message and wait for the other process to receive it
             # if (loop == 2 and self.me == 0):
             #     self.com.broadcastSync(self.me, "coucou")
-            
+
             # # The process 1 check if he received it and wait for everyone to receive it
             # if(loop == 4 and self.me == 1):
             #     self.com.broadcastSync(0)
@@ -112,7 +110,7 @@ class Process(Thread):
 
             if loop == 12 and self.me == 3:
                 self.com.sendToSync(1, "Bonjour !")
-            
+
             loop += 1
         print(self.getName() + " stopped")
 
