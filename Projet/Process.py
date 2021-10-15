@@ -1,23 +1,28 @@
 from sys import argv
 from threading import Thread
-
-from pyeventbus3.pyeventbus3 import *
-from Message import Token
-from Com import Com
+import random
 from time import sleep
 
+from pyeventbus3.pyeventbus3 import *
+
+from Com import Com
+from Message import Token
+
+
 class Process(Thread):
-    def __init__(self, me, receivers, argv):
+    def __init__(self, me, argv):
         # Instance of bus listener
         Thread.__init__(self)
-        self.setName(me)
-        PyBus.Instance().register(self, self)
 
         # Self parameters
         self.me = me
-        self.receivers = receivers
         self.argv = argv
+        self.annuaire = {}
 
+        self.numero = -1
+        self.pid = random.randint(0, sys.maxsize)
+        self.pidLeader = -1
+        self.AmILeader = False
 
         self.state = None
         self.com = Com(0, self)
@@ -35,7 +40,7 @@ class Process(Thread):
         loop = 0
         while self.alive:
             print(self.getName() + " Loop: " + str(loop))
-            
+
             sleep(1)
             
             # Switch case for tests
@@ -130,3 +135,6 @@ class Process(Thread):
 
         if loop == 12 and self.me == 0:
             self.com.sendToSync(to, "Bonjour !")
+
+    def get_a_number(self):
+        self.com.numerotation()
