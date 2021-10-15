@@ -11,11 +11,11 @@ class Com(Thread):
     def __init__(self, clock, process) -> None:
         # Instance of bus listener
         Thread.__init__(self)
-        self.setName(process.me)
+        self.setName(process.numero)
         PyBus.Instance().register(self, self)
 
         # Self parameters
-        self.owner = process.me
+        self.owner = process.numero
         self.clock = clock
         self.sem = threading.Semaphore()
         self.mailbox = []

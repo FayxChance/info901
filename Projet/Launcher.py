@@ -7,14 +7,15 @@ if __name__ == "__main__":
     print('Argument List: ' + str(sys.argv))
 
     processes = []
-    receivers = [0,1,2,3]
-    for i in receivers:
-        r = receivers.copy()
-        r.remove(i)
-        p = Process(i, r, sys.argv)
+    leader = False
+    for i in range(6):
+        p = Process(sys.argv)
+        if not leader:
+            sleep(5)
+            leader = True
         processes.append(p)
 
-    sleep(2)
+    sleep(20)
 
     for p in processes:
         p.stop()
