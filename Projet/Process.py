@@ -4,18 +4,23 @@ from pyeventbus3.pyeventbus3 import *
 from Message import Token
 from Com import Com
 from time import sleep
+import random
 
 class Process(Thread):
     def __init__(self, me, receivers):
         # Instance of bus listener
         Thread.__init__(self)
         self.setName(me)
-        PyBus.Instance().register(self, self)
 
         # Self parameters
         self.me = me
         self.receivers = receivers
 
+        self.annuaire = {}
+        self.numero = -1
+        self.pid = random.randint(0, sys.maxsize)
+        self.pidLeader = -1
+        self.AmILeader = False
 
         self.state = None
         self.com = Com(0, self)
@@ -110,3 +115,6 @@ class Process(Thread):
             
             loop += 1
         print(self.getName() + " stopped")
+
+    def get_a_number(self):
+        self.com.numerotation()
